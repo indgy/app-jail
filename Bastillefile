@@ -1,13 +1,15 @@
 # Create the minimal required folders
-CMD mkdir -p /bin /etc /lib /libexec
+CMD mkdir -p /bin /etc /lib /libexec /usr/sbin /var/log /var/run
 
 # Copy the minimum required libraries into the jail
 CP /lib/libc.so.7 /lib
 CP /lib/libthr.so.3 /lib
 CP /libexec/ld-elf.so.1 /libexec
-# This is required if using /usr/sbin/daemon to monitor your app
+# The daemon can monitor and restart your app
 CP /lib/libutil.so.9 /lib
-CP /usr/sbin/daemon /bin
+CP /usr/sbin/daemon /usr/sbin
+# Kill is required to stop the daemon
+CP /bin/kill /usr/sbin
 
 # This is required for networking
 CP /etc/resolv.conf /etc
