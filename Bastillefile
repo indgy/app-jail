@@ -13,3 +13,6 @@ CP /bin/kill /usr/sbin
 
 # This is required for networking
 CP /etc/resolv.conf /etc
+
+# Forward ports tcp host:80 to jail:2000
+RDR tcp 80 2000
